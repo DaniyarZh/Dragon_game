@@ -1,25 +1,28 @@
+class Dragon:
+    def create(self):
+        self.health = 100
+        
+    def is_alive(self):
+        return self.health > 0
 
-def dragon_create():
-    global health
-    health = 100
+    def get_damage(self, damage):
+        self.health -= damage
+        if self.health < 0:
+            self.health = 0
+
+    def talk(self):
+        print('My health', self.health, '. Hit me!')
+
     
-def dragon_is_alive():
-    return health > 0
-
-def dragon_get_damage(damage):
-    global health 
-    health -= damage
-    if health < 0:
-        health = 0
-
 def main():
-    dragon_create()
+    dragon = Dragon()
+    dragon.create()
     finish = False
     while not finish:
-        print('My health', health, '. Hit me!')
+        dragon.talk()
         damage = int(input())
-        dragon_get_damage(damage)
-        if not dragon_is_alive():
+        dragon.get_damage(damage)
+        if not dragon.is_alive():
             finish = True
 
     print('YOu win')
